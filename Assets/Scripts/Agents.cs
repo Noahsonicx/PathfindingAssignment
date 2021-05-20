@@ -16,7 +16,10 @@ public class Agents : MonoBehaviour
     void Start()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
+        //FindObjectsOfType gets every instance of this component in the scene
         waypoint = FindObjectsOfType<Waypoints>();
+
+        // telling the agent to move to a random position in the waypoints in the scene
         agent.SetDestination(RandomPoint.Position);
     }
 
@@ -30,4 +33,5 @@ public class Agents : MonoBehaviour
             agent.SetDestination(RandomPoint.Position);
         }
     }
+    // add a start and end for each door
 }
