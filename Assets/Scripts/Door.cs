@@ -18,5 +18,6 @@ public class Door : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.Lerp(start.position, end.position, Mathf.PingPong(Time.time * speed, 1));
+        transform.rotation = start.rotation;
     }
 }

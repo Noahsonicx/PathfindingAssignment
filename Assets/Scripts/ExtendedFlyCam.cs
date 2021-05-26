@@ -30,13 +30,23 @@ public class ExtendedFlyCam : MonoBehaviour
 	private float rotationX = 0.0f;
 	private float rotationY = 0.0f;
 
-	void Start()
-	{
-		Screen.lockCursor = true;
+	private bool shouldUseMouse = true;
+
+	private void SetLockState(bool _state)
+    {
+		Cursor.lockState = _state ? CursorLockMode.Locked : CursorLockMode.None;
+		Cursor.visible = !_state;
 	}
 
 	void Update()
 	{
+		if(Input.GetKeyDown(KeyCode.Escape))
+        {
+			shouldUseMouse = !shouldUseMouse;
+        }
+
+		SetLockState(shouldUseMouse);
+
 		rotationX += Input.GetAxis("Mouse X") * cameraSensitivity * Time.deltaTime;
 		rotationY += Input.GetAxis("Mouse Y") * cameraSensitivity * Time.deltaTime;
 		rotationY = Mathf.Clamp(rotationY, -90, 90);
